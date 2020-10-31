@@ -34,25 +34,43 @@ typedef vector<pii>		vpii;
 typedef vector<pl>		vpl;
 typedef vector<vi>		vvi;
 typedef vector<vl>		vvl;
+int mpow(int base, int exp); 
 const int mod = 1000000007;
 const int N = 3e5, M = N;
 //=======================
 
-int main() {
-    FIN
-    int n;
-    int i,j;
+//        .            [.]          
+//      .   .        .     .         
+//   .        .    .              
+//              [.]
+
+// 1. Simply find the min and maxprofit after that, it assures that you won't get a sell before a but. 
+// ONE PASS
+
+
+int maxProfit(vector<int>& prices) {
     
-    cin>>n;
-    while(n--)
-    {
-        int s;
-        cin>>s;
-        vi ar(n)
-        fo(i,n)
-        cin>>ar[i];
+        int minprice = INT_MAX;
+        int maxprofit = 0;
+        for (int i = 0; i < prices.size(); i++) {
+            if (prices[i] < minprice)
+                minprice = prices[i];
+            else if (prices[i] - minprice > maxprofit)
+                maxprofit = prices[i] - minprice;
+        }
+        return maxprofit;
         
     }
 
+int main() {
+    FIN
+    int n,i,j;
+    cin >> n;
+    vi ar(n);
+    fo(i,n)
+    cin>>ar[i];
+    cout<<maxProfit(ar);
     return 0;
 }
+
+

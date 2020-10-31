@@ -38,20 +38,44 @@ const int mod = 1000000007;
 const int N = 3e5, M = N;
 //=======================
 
+vector<int> CommonArray(vector<int> ar1,vector<int> ar2,vector<int> ar3)
+{
+  
+    int i=0,j=0,k=0;
+    int s1=ar1.size(),s2=ar2.size(),s3=ar3.size();
+    vi retu;
+    while(i<s1 and j<s2 and k<s3)
+    {
+
+        if(ar1[i]==ar2[j] and ar2[j]==ar3[k])
+        {
+        retu.push_back(ar1[i]);i++,j++,k++;
+        }
+        else if(ar1[i]<ar2[j])
+        i++;
+        else if(ar2[j]<ar3[k])
+        j++;
+        else
+        k++;
+    }
+    return retu;
+}
+
+
 int main() {
     FIN
-    int n;
+    int n=1;
     int i,j;
     
-    cin>>n;
     while(n--)
     {
-        int s;
-        cin>>s;
-        vi ar(n)
-        fo(i,n)
-        cin>>ar[i];
+        vi ar1 = {1,2,3};
+        vi ar2 = {1,2};
+        vi ar3 = {1};
         
+        for(int i:CommonArray(ar1,ar2,ar3))
+        cout<<i;
+
     }
 
     return 0;

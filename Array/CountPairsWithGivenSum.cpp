@@ -40,19 +40,28 @@ const int N = 3e5, M = N;
 
 int main() {
     FIN
-    int n;
-    int i,j;
-    
+    int n,i,j;
     cin>>n;
-    while(n--)
+    map <int,int> mp;
+    vi ar(n);
+
+    int k;cin>>k;
+
+    fo(i,n)
     {
-        int s;
-        cin>>s;
-        vi ar(n)
-        fo(i,n)
-        cin>>ar[i];
-        
+      cin>>ar[i];
+      mp[ar[i]]++;
     }
+
+    int tsum=0;
+    fo(i,n)
+    {
+        tsum+=mp[k-ar[i]];
+        if(k-ar[i]==ar[i])
+        tsum--;
+    }
+
+    cout<<tsum/2;
 
     return 0;
 }
