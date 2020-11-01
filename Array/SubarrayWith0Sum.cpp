@@ -45,12 +45,28 @@ int main() {
     
     cin>>s;
     while(s--)
-    {
-        int n;
+    {   int n;
         cin>>n;
         vi ar(n);
         fo(i,n)
         cin>>ar[i];
+        int f=1;
+        int sum=0;
+        set<int> se;
+        fo(i,n)
+        {
+            sum+=ar[i];
+            if(sum==0 or se.find(sum)!=se.end())
+            {
+                cout<<"Yes"<<endl;
+                f=0;
+                break;
+            }
+            se.insert(sum);
+        }
+        if(f)
+        cout<<"No"<<endl;
+
     }
 
     return 0;

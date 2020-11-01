@@ -1,6 +1,3 @@
-
-
-
 #include <bits/stdc++.h>
 using namespace std;
 #define gc getchar_unlocked
@@ -38,6 +35,41 @@ const int mod = 1000000007;
 const int N = 3e5, M = N;
 //=======================
 
+int mutiply(vector<int> &ar,int n,int size)
+{
+    int carry=0;
+    int i;
+    for(i=0;i<size;i++)
+    {
+        ar[i]=ar[i]*n + carry;
+        carry = ar[i]/10;
+        ar[i]= ar[i]%10;
+    }
+   // deb(carry);
+    while(carry)
+    {
+        ar[i++]=carry%10;
+        carry=carry/10;
+        size++;
+    }
+   // deb(size);
+    return size;
+}
+
+void factorial(int n)
+{
+    vector <int> num(100,0);
+    num[0]=1;
+    int len = 1;
+
+    for(int i=2;i<=n;i++)
+    len = mutiply(num,i,len);
+
+    for(int i=len-1;i>=0;i--)
+    cout<<num[i];
+    cout<<endl;
+}
+
 int main() {
     FIN
     int s;
@@ -48,9 +80,7 @@ int main() {
     {
         int n;
         cin>>n;
-        vi ar(n);
-        fo(i,n)
-        cin>>ar[i];
+        factorial(n);
     }
 
     return 0;
