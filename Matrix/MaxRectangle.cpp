@@ -51,7 +51,6 @@ void debmat(vector<vector<int>> &ar)
     cout<<endl;
   }
   cout<<"////////////"<<endl;
-
 }
 
 int findSpecificPair(vector<vector<int>> &ar,int &R,int &C)
