@@ -1,6 +1,3 @@
-//https://www.youtube.com/watch?v=vBdo7wtwlXs
-// Refer this!
-
 #include <bits/stdc++.h>
 using namespace std;
 #define gc getchar_unlocked
@@ -38,37 +35,60 @@ const int mod = 1000000007;
 const int N = 3e5, M = N;
 //=======================
 
+
+vector<vector<string>> printAnagramsTogether(vector<string> &str) {
+  int n=str.size();
+  map<string,vector<string>> mp;
+  for(string x:str)
+  {
+    string y=x;
+    sort(all(x));
+    if(mp.find(x)==mp.end())
+    {
+      vector <string> temp = {y};
+      mp.insert({x,temp});
+    }
+    else
+    {
+      //deb(y);
+      mp[x].push_back(y);
+    }
+  }
+  vector<vector<string>> vec;
+  for(auto i=mp.rbegin();i!=mp.rend();i++)
+  {
+    vector<string> temp;
+    for(auto j=i->second.begin();j!=i->second.end();j++)
+    temp.push_back(*j);
+    vec.push_back(temp);
+  }
+  return vec;
+}
+
+
 int main() {
     FIN
-    int n,i,j;
-    cin>>n;
-    while(n--)
+    int s;
+    int i,j;
+    cin>>s;
+    while(s--)
     {
-      int s;
-      cin>>s;
-      
-      vi ar(s);
-      fo(i,s)
-      cin>>ar[i];
-
-      vi T(s,INT_MAX);
-      if(ar[0]>0)
-      T[0]=0;
-
-      for(j=1;j<s;j++)
-      {
-        for(i=0;i<j;i++)
+        int n;
+        cin>>n;
+        vector<string> ar(n);
+        fo(i,n)
+        cin>>ar[i];
+        vector<vector<string>> RES = printAnagramsTogether(ar);
+        for(int i=0;i<RES.size();i++)
         {
-          if(ar[i]>=j-i)
-          T[j]=min(T[j],T[i]+1);
+          for(int j=0;j<RES[i].size();j++)
+          {
+            cout<<RES[i][j]<<" ";
+          }
+          cout<<endl;
         }
-        // deb(j);
-        // fo(i,s)
-        // cout<<T[i]<<" ";
-        // cout<<endl;
-      }
-      cout<<T[s-1]<<endl;
+        cout<<endl;
     }
-    
+
     return 0;
 }

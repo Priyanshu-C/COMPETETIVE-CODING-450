@@ -1,6 +1,3 @@
-//https://www.youtube.com/watch?v=vBdo7wtwlXs
-// Refer this!
-
 #include <bits/stdc++.h>
 using namespace std;
 #define gc getchar_unlocked
@@ -38,37 +35,52 @@ const int mod = 1000000007;
 const int N = 3e5, M = N;
 //=======================
 
+bool isomorphicString(string a,string b)
+{
+
+int n1=a.size();
+int n2=b.size();
+
+if(n1!=n2)
+return false;
+
+vector<bool> seen(250,false);
+vector<int> tag(250,-1);
+
+
+for(int i=0;i<n1;i++)
+{
+  //deb(tag[a[i]]);
+  if(tag[a[i]]==-1)
+  {
+    if(seen[b[i]]==true)
+    return false;
+    seen[b[i]]=true;
+    tag[a[i]]=b[i];
+  }
+  else
+  {
+    if(tag[a[i]]!=b[i])
+    return false;
+  }
+}
+return true;
+
+
+}
+
 int main() {
     FIN
-    int n,i,j;
-    cin>>n;
-    while(n--)
+    int s;
+    int i,j;
+    cin>>s;
+    while(s--)
     {
-      int s;
-      cin>>s;
-      
-      vi ar(s);
-      fo(i,s)
-      cin>>ar[i];
-
-      vi T(s,INT_MAX);
-      if(ar[0]>0)
-      T[0]=0;
-
-      for(j=1;j<s;j++)
-      {
-        for(i=0;i<j;i++)
-        {
-          if(ar[i]>=j-i)
-          T[j]=min(T[j],T[i]+1);
-        }
-        // deb(j);
-        // fo(i,s)
-        // cout<<T[i]<<" ";
-        // cout<<endl;
-      }
-      cout<<T[s-1]<<endl;
+        string a,b;
+        cin>>a>>b;
+        cout<<(isomorphicString(a,b)?"Yes":"No");
+        cout<<endl;
     }
-    
+
     return 0;
 }
