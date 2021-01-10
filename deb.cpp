@@ -1,5 +1,7 @@
 //STACK
 
+#define fo(i,n) for(int i=0;i<n;i++)
+
 void debstack(stack<char> s)
 {
   cout<<endl<<"...........";
@@ -13,6 +15,7 @@ void debstack(stack<char> s)
 
 //2-D Matrix
 
+#define fo(i,n) for(int i=0;i<n;i++)
 void debmat(vector<vector<int>> &ar)
 {
   int R=ar.size();
@@ -30,14 +33,15 @@ void debmat(vector<vector<int>> &ar)
 
 //Vector
 
-void debvec(vector<> &ar)
+#define fo(i,n) for(int i=0;i<n;i++)
+void debvec(vector<int> &ar)
 {
   int R=ar.size();
   int i;
   cout<<endl<<"////////////"<<endl;
   fo(i,R)
   {
-    cout<<ar[i]"  ";
+    cout<<ar[i]<<"  ";
   }
   cout<<endl<<"////////////"<<endl;
 }
